@@ -8,8 +8,8 @@ public class Sample {
 
 	public static void main(String[] args) {
 		Sample p = new Sample();
-//		p.exercise1();
-		p.exercise2();
+		p.exercise1();
+//		p.exercise2();
 		
 	}
 	
@@ -73,14 +73,14 @@ public class Sample {
 		//입력받은 열의 갯수만큼 배열로 만들기
 		for(int i=0;i<3;i++) {
 			intArr[i] = new int[row];
+			printArr[i] = new int[row];
 		}
 		
 		//1~100까지 임의의 정수를 각 행렬에 기록
 		for(int i=0;i<intArr.length;i++) {
 			for(int j=0;j<row;j++) {
 				Random rndInt = new Random();
-				intArr[i][j] = rndInt.nextInt(100);
-				
+				intArr[i][j] = rndInt.nextInt(100);				
 			}
 		}
 		int sum = 0;
@@ -94,28 +94,32 @@ public class Sample {
 		System.out.println("====================");
 		
 		//각 열의 합계가 5의 배수인 값 찾기
-//		for(int i=0;i<row;i++) {
-//			for(int j=0;j<intArr.length;j++) {
-//				sum += intArr[j][i];
-//				if(sum%5!=0) {
-//					for(j=0;j<intArr.length;j++) {
-//						intArr[j][i]=0;
-//					}
-//				}
-//			}
-//		}
-
-		//각 행의 합계가 5의 배수인 값 찾기
-		for(int i=0;i<intArr.length;i++) {
-			for(int j=0;j<row;j++) {
-				sum += intArr[i][j];
-			}
+		for(int i=0;i<row;i++) {
+			for(int j=0;j<intArr.length;j++) {
+				sum += intArr[j][i];
+					}
 			if(sum%5==0) {
-				System.out.println(Arrays.toString(intArr[i]));					
+				for(int j=0;j<intArr.length;j++) {
+					printArr[j][i]=intArr[j][i];
+					System.out.println(Arrays.toString(printArr[j]));			
+				}
 			}
 			sum=0;
 		}
 
+		//출력문 구분
+		System.out.println("====================");
+		
+		//각 행의 합계가 5의 배수인 값 찾기
+//		for(int i=0;i<intArr.length;i++) {
+//			for(int j=0;j<row;j++) {
+//				sum += intArr[i][j];
+//			}
+//			if(sum%5==0) {
+//				System.out.println(Arrays.toString(intArr[i]));					
+//			}
+//			sum=0;
+//		}
+
 	}
-	
 }
