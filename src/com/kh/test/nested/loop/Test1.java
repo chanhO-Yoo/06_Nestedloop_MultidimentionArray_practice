@@ -21,7 +21,6 @@ public class Test1 {
 	public void test() {
 		Scanner sc = new Scanner(System.in);
 		
-		
 		while(true) {
 			System.out.print("정수를 입력하세요 : ");
 			int input = sc.nextInt();
@@ -30,7 +29,7 @@ public class Test1 {
 			//입력한 정수가 양수인지 음수인지 판별
 			//음수일 경우
 			if(input<=0) {
-				System.out.println("양수가 아닙니다.");
+				result = "양수가 아닙니다.";
 			}
 			//양수일 경우
 			else {

@@ -9,7 +9,9 @@ public class Sample {
 	public static void main(String[] args) {
 		Sample p = new Sample();
 //		p.exercise1();
-		p.exercise2();
+		p.exercise1_1();
+//		p.exercise2();
+//		p.exercise3();
 		
 	}
 	
@@ -55,6 +57,29 @@ public class Sample {
 		}
 	}
 	
+	//분할정복(Divide and Conquer)
+	public void exercise1_1() {
+		int[][] arr = new int[3][4];
+		
+		for(int i=0;i<arr.length;i++) {
+			int rowSum = 0;
+			for(int j=0;j<arr[i].length;j++) {
+				if(j<arr[i].length-1) {
+					arr[i][j]=new Random().nextInt(100)+1;
+					rowSum += arr[i][j];
+				}
+				else {
+					arr[i][j] = rowSum;
+				}
+			}
+		}
+		
+		for(int i=0;i<arr.length;i++) {
+			System.out.println(Arrays.toString(arr[i]));			
+		}
+		
+	}
+	
 	/*
 	 * 1. 3행짜리 2차원배열 선언 및 생성
 	 * 2. 각 행별 열갯수는 키보드로 입력받아 생성함
@@ -66,29 +91,16 @@ public class Sample {
 		int[][] intArr = new int[3][];
 		int[][] printArr = new int[3][];
 		
-		//0행의 열의 갯수 입력받기
-		System.out.print("0행의 열 갯수를 입력하세요 : ");
-		int col0_row = sc.nextInt();
+		//각 행의 열의 갯수 입력받기
+		for(int i=0;i<intArr.length;i++) {
+			System.out.print(i+"행의 열 갯수를 입력하세요 : ");
+			int row = sc.nextInt();
+			
+			//입력받은 열의 갯수만큼 배열로 만들기
+			intArr[i] = new int[row];
+			printArr[i] = new int[row];
+		}
 		
-		//입력받은 열의 갯수만큼 배열로 만들기
-		intArr[0] = new int[col0_row];
-		printArr[0] = new int[col0_row];
-		
-		//1행의 열의 갯수 입력받기
-		System.out.print("1행의 열 갯수를 입력하세요 : ");
-		int col1_row = sc.nextInt();
-		
-		//입력받은 열의 갯수만큼 배열로 만들기
-		intArr[1] = new int[col1_row];
-		printArr[1] = new int[col1_row];
-
-		//2행의 열의 갯수 입력받기
-		System.out.print("2행의 열 갯수를 입력하세요 : ");
-		int col2_row = sc.nextInt();
-		
-		//입력받은 열의 갯수만큼 배열로 만들기
-		intArr[2] = new int[col2_row];
-		printArr[2] = new int[col2_row];
 		
 		//1~100까지 임의의 정수를 각 행렬에 기록
 		for(int i=0;i<intArr.length;i++) {
@@ -97,6 +109,8 @@ public class Sample {
 				intArr[i][j] = rndInt.nextInt(100);				
 			}
 		}
+		
+		//합계 초기화
 		int sum = 0;
 
 		//배열 출력하기
@@ -135,5 +149,60 @@ public class Sample {
 			sum=0;
 		}
 
+	}
+	
+public void exercise3() {
+		
+		Scanner sc = new Scanner(System.in);
+		int[][] arr = new int[3][];
+		
+		int num = 0;
+		int col_num = 0;
+		
+		// 유효성 검사 후 (0,0) 부터 (2,col_num)) 까지 입력받기 
+		for(int row=0; row<3; row++) 
+		{
+			// 행의 열 갯수 입력받기
+			System.out.println(row + "행의 의 열 갯수는? ");
+			col_num = sc.nextInt();
+			arr[row] = new int[col_num];
+			
+			// 열 갯수만큼 행에 숫자 입력받기
+			for(int col=0; col<col_num; col++)
+			{
+				System.out.print("("+ row + ", " + col + ") 입력 : ");
+				num = sc.nextInt();
+				
+				// 유효성 검사
+				if(num>=1 && num<=100)
+					arr[row][col] = num;
+				
+				else
+				{
+					System.out.println("1~100 사이의 값을 입력하지 않았습니다.");
+					break;
+				}
+			}
+		}
+		
+		// 각 행의 합을 저장할 정수형 sum 배열 선언 후 각 sum[0],sum[1],sum[2]에 합 저장
+		int[] sum = new int[3];
+		
+		for(int row=0; row<3; row++) 
+			for(int col=0; col<arr[row].length; col++)
+				sum[row] += arr[row][col]; 
+		
+		
+		// sum의 합이 5의 배수일때 각 열 출력
+		for(int i=0; i<arr.length; i++) 
+			
+			if(sum[i]%5==0)
+			{
+				for(int j=0; j<arr[i].length; j++)
+					System.out.print(arr[i][j] + "\t");
+				
+				System.out.print(" > 합계: " + sum[i]);
+				System.out.println();
+			}
 	}
 }

@@ -29,7 +29,7 @@ public class Test2 {
 			
 			//양수인지 판별
 			if(input<=0) {
-				result ="양수가 아닙니다.";
+				result ="출력기능이 없습니다.";
 			}
 			else {
 				//입력 받은 숫자만큼 반복문 실행

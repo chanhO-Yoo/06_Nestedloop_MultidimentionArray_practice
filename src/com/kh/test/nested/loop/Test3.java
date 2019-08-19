@@ -30,8 +30,6 @@ public class Test3 {
 		System.out.print("정수를 입력하세요 : ");
 		int input = sc.nextInt();
 		String result = "";
-//		String asterisk1 = "";
-//		String asterisk2 = "";
 		
 		if(input <=0) {
 			result = "양수가 아닙니다.";
